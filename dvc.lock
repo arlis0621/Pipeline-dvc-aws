@@ -5,8 +5,8 @@ stages:
     deps:
     - path: src/data_ingestion.py
       hash: md5
-      md5: 38e90fb4afc3367dfc5ff88b7837ff18
-      size: 2642
+      md5: a3c1e51fe3e8955097572f2a7fbae22b
+      size: 3274
     params:
       params.yaml:
         data_ingestion.test_size: 0.2
@@ -44,29 +44,29 @@ stages:
       nfiles: 2
     - path: src/feature_eng.py
       hash: md5
-      md5: 3e7f968c6787f58de11ccc01a1c10c49
-      size: 2852
+      md5: dbb53dd22470a572be1df02fadd726c5
+      size: 3491
     params:
       params.yaml:
         feature_eng.max_features: 1000
     outs:
     - path: data/processed
       hash: md5
-      md5: 3da3599e196f7920405811457ae6079a.dir
-      size: 1188347
+      md5: 9c1fd20e8849d72f06f26def5c3e285d.dir
+      size: 21666562
       nfiles: 2
   model_train:
     cmd: python src/model_train.py
     deps:
     - path: data/processed
       hash: md5
-      md5: 3da3599e196f7920405811457ae6079a.dir
-      size: 1188347
+      md5: 9c1fd20e8849d72f06f26def5c3e285d.dir
+      size: 21666562
       nfiles: 2
     - path: src/model_train.py
       hash: md5
-      md5: 78a7bab7b75e747c853ca98a85d605cf
-      size: 2600
+      md5: 45b57ae743af2573d295668ecde24d8d
+      size: 3242
     params:
       params.yaml:
         model_train.n_estimators: 100
@@ -74,15 +74,15 @@ stages:
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 210bb2a4101872af86b480cb3794eb30
-      size: 989865
+      md5: 4731e35f4f8930d2beb68f88ce9a115b
+      size: 7708884
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
     - path: models/model.pkl
       hash: md5
-      md5: 210bb2a4101872af86b480cb3794eb30
-      size: 989865
+      md5: 4731e35f4f8930d2beb68f88ce9a115b
+      size: 7708884
     - path: src/model_evaluation.py
       hash: md5
       md5: 017b61f2619300086241a28c19216058
@@ -90,5 +90,5 @@ stages:
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: 29e5bd91fc65d20670d5b1953952528f
-      size: 39
+      md5: 8be0a756e7a8f7b338a8cb4933ed666c
+      size: 40
