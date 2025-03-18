@@ -28,21 +28,21 @@ file_handler.setFormatter(formater)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-def load_params(params_path: str)->dict:
-    try:
-        with open(params_path,'r') as file:
-            params=yaml.safe_load(file)
-        logger.debug('Parameters retrieved from %s',params_path)
-        return params
-    except FileNotFoundError:
-        logger.error('File not found')
-        raise
-    except yaml.YAMLError as e:
-        logger.error('Yaml error: %s',e)
-        raise
-    except Exception as e:
-        logger.error('Unexpected error : %s',e)
-        raise
+# def load_params(params_path: str)->dict:
+#     try:
+#         with open(params_path,'r') as file:
+#             params=yaml.safe_load(file)
+#         logger.debug('Parameters retrieved from %s',params_path)
+#         return params
+#     except FileNotFoundError:
+#         logger.error('File not found')
+#         raise
+#     except yaml.YAMLError as e:
+#         logger.error('Yaml error: %s',e)
+#         raise
+#     except Exception as e:
+#         logger.error('Unexpected error : %s',e)
+#         raise
 
 
 
@@ -86,10 +86,10 @@ def save_model(model,file_path: str) ->None:
         raise
 def main():
     try:
-        # params={'n_estimators':25,'random_state':2}
-        params=load_params('params.yaml')['model_train']
+        params={'n_estimators':25,'random_state':2}
+        # params=load_params('params.yaml')['model_train']
         train_data=load_data('./data/processed/train_tfidf.csv')
-        train_data=load_data('./data/processed/train_tfidf.csv')
+        # train_data=load_data('./data/processed/train_tfidf.csv')
         x_train=train_data.iloc[:,:-1].values
         y_train=train_data.iloc[:,-1].values
         clf =train_model(x_train,y_train,params)
