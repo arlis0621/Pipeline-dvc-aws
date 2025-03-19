@@ -1,2 +1,2 @@
-n_estimators: 25
+n_estimators: 20
 random_state: 2
