@@ -107,9 +107,9 @@ def main():
 
         metrics=evaluate_model(clf,x_test,y_test)
 
-        with Live(save_dvc_exp=False) as dtklive:
-            dtklive.log_metric('accuracy',accuracy_score(y_test,y_test))
-            dtklive.log_params(params)
+        with Live(save_dvc_exp=True)  as live:
+            live.log_metric('accuracy',accuracy_score(y_test,y_test))
+            live.log_params(params)
 
         save_metrics(metrics,'reports/metrics.json')
     except Exception as e:
